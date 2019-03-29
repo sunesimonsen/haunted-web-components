@@ -1,0 +1,19 @@
+{
+  "name": "haunted-web-components",
+  "version": "1.0.0",
+  "description": "Experimenting with haunted",
+  "main": "index.js",
+  "author": "Sune Simonsen",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rollup --config rollup.config.js src/index.js"
+  },
+  "devDependencies": {
+    "prettier": "1.16.4",
+    "rollup": "1.6.0",
+    "rollup-plugin-terser": "4.0.4",
+    "rollup-plugin-url-import": "0.3.0",
+    "serve": "10.1.2"
+  }
+}
