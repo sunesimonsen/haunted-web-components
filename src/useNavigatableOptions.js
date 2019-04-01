@@ -1,6 +1,9 @@
-import { useEffect } from "https://unpkg.com/haunted@4.2.0/haunted.js";
+import {
+  useEffect,
+  useState
+} from "https://unpkg.com/haunted@4.2.0/haunted.js";
 
-export const useNavigatableOptions = (element, { trapFocus = false } = {}) => {
+export const useNavigatableOptions = element => {
   useEffect(() => {
     const select = e => {
       const option = e.target.closest("x-option");
@@ -51,17 +54,8 @@ export const useNavigatableOptions = (element, { trapFocus = false } = {}) => {
     });
 
     element.addEventListener("keydown", e => {
-      if (e.keyCode === 9 && trapFocus) {
-        if (e.shiftKey) {
-          return previousItem(e);
-        } else {
-          return nextItem(e);
-        }
-      }
-
       switch (e.keyCode) {
         case 13: // Enter
-        case 32: // Space
           return select(e);
 
         case 38: // Arrow up

@@ -1,4 +1,4 @@
-import { html } from "https://unpkg.com/lit-html@^1.0.0/lit-html.js";
+import { html } from "https://unpkg.com/lit-html@1.0.0/lit-html.js";
 
 import {
   component,
@@ -10,21 +10,36 @@ import { useNavigatableOptions } from "./useNavigatableOptions.js";
 
 const Select = element => {
   const [isOpen, setIsOpen] = useState(false);
+  useNavigatableOptions(element);
 
-  useNavigatableOptions(element, { trapFocus: true });
+  const openMenu = () => {
+    setIsOpen(true);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  const toggleOpenState = () => {
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
 
   useEffect(() => {
     const trigger = element.shadowRoot.getElementById("trigger");
 
     element.addEventListener("change", e => {
-      setIsOpen(false);
+      closeMenu();
       trigger.focus();
     });
 
     element.addEventListener("keydown", e => {
       if (e.keyCode === 27) {
         // Esc
-        setIsOpen(false);
+        closeMenu();
         trigger.focus();
       }
     });
@@ -59,18 +74,16 @@ const Select = element => {
       }
     </style>
     <div id="container">
-      <button id="trigger" @click=${() => setIsOpen(!isOpen)}>
+      <button id="trigger" @click=${toggleOpenState}>
         <slot name="value"></slot>
       </button>
-      <div id="selection">
-        ${isOpen
-          ? html`
-              <ul id="menu">
-                <slot>No items!</slot>
-              </ul>
-            `
-          : null}
-      </div>
+      ${isOpen
+        ? html`
+            <ul id="menu">
+              <slot>No items!</slot>
+            </ul>
+          `
+        : null}
     </div>
   `;
 };

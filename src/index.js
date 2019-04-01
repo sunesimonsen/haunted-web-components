@@ -1,6 +1,6 @@
-import { html, render } from "https://unpkg.com/lit-html@^1.0.0/lit-html.js";
+import { html, render } from "https://unpkg.com/lit-html@1.0.0/lit-html.js";
 
-import { repeat } from "https://unpkg.com/lit-html@^1.0.0/directives/repeat.js";
+import { repeat } from "https://unpkg.com/lit-html@1.0.0/directives/repeat.js";
 
 import {
   component,
