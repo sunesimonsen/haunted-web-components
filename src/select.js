@@ -1,4 +1,4 @@
-import { html } from "https://unpkg.com/lit-html@1.0.0/lit-html.js";
+import { html } from "https://unpkg.com/lit-html@^1.0.0/lit-html.js";
 
 import {
   component,
@@ -7,9 +7,12 @@ import {
 } from "https://unpkg.com/haunted@4.2.0/haunted.js";
 
 import { useNavigatableOptions } from "./useNavigatableOptions.js";
+import "./button.js";
+import { hoverColor, focusColor } from "./defaultTheme.js";
 
 const Select = element => {
   const [isOpen, setIsOpen] = useState(false);
+
   useNavigatableOptions(element);
 
   const openMenu = () => {
@@ -18,6 +21,8 @@ const Select = element => {
 
   const closeMenu = () => {
     setIsOpen(false);
+    const trigger = element.shadowRoot.getElementById("trigger");
+    trigger.focus();
   };
 
   const toggleOpenState = () => {
@@ -28,22 +33,32 @@ const Select = element => {
     }
   };
 
-  useEffect(() => {
-    const trigger = element.shadowRoot.getElementById("trigger");
-
-    element.addEventListener("change", e => {
-      closeMenu();
-      trigger.focus();
-    });
-
-    element.addEventListener("keydown", e => {
-      if (e.keyCode === 27) {
-        // Esc
+  const closeOnBlur = e => {
+    setTimeout(() => {
+      if (isOpen && !element.querySelector("x-option:focus")) {
         closeMenu();
-        trigger.focus();
       }
+    }, 1);
+  };
+
+  const onKeyDown = e => {
+    switch (e.keyCode) {
+      case 9:
+        // Tab
+        return closeOnBlur(e);
+
+      case 27:
+        // Esc
+        e.preventDefault();
+        return closeMenu();
+    }
+  };
+
+  useEffect(() => {
+    element.addEventListener("change", () => {
+      closeMenu();
     });
-  });
+  }, [element]);
 
   return html`
     <style>
@@ -66,17 +81,35 @@ const Select = element => {
 
       #menu {
         position: absolute;
-        border: thin solid black;
+        border: 1px solid #d8dcde;
+        border-radius: 3px;
         z-index: 100;
         background: white;
-        padding: 8px;
+        box-shadow: 0 20px 30px 0 rgba(4, 68, 77, 0.15);
+        padding: 8px 0;
         margin: 0;
+        margin-top: 2px;
+        min-width: 180px;
+      }
+
+      ::slotted(x-option) {
+        display: block;
+        padding: 10px 32px;
+      }
+
+      ::slotted(x-option:focus) {
+        background: var(--focus-color, ${focusColor});
+        outline: none;
+      }
+
+      ::slotted(x-option:hover) {
+        background: var(--accent-color-hover, ${hoverColor});
       }
     </style>
-    <div id="container">
-      <button id="trigger" @click=${toggleOpenState}>
+    <div id="container" @keydown=${onKeyDown}>
+      <x-button id="trigger" @click=${toggleOpenState}>
         <slot name="value"></slot>
-      </button>
+      </x-button>
       ${isOpen
         ? html`
             <ul id="menu">
@@ -94,7 +127,7 @@ const Selected = element => {
   });
 
   return html`
-    <div class="value" tabindex="0"><slot></slot></div>
+    <slot></slot>
   `;
 };
 

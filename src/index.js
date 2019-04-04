@@ -1,6 +1,6 @@
-import { html, render } from "https://unpkg.com/lit-html@1.0.0/lit-html.js";
+import { html, render } from "https://unpkg.com/lit-html@^1.0.0/lit-html.js";
 
-import { repeat } from "https://unpkg.com/lit-html@1.0.0/directives/repeat.js";
+import { repeat } from "https://unpkg.com/lit-html@^1.0.0/directives/repeat.js";
 
 import {
   component,
@@ -43,6 +43,12 @@ const App = () => {
       section + section {
         margin-top: 10px;
       }
+      .blue {
+        --accent-color: #5293c7;
+        --accent-color-hover: #5293c715;
+        --focus-color: #5293c725;
+        --focus-color-outline: #5293c760;
+      }
     </style>
     <section>
       <x-greeting name=${name || "Enter a name"}></x-greeting>
@@ -53,6 +59,18 @@ const App = () => {
     </section>
     <section>
       <x-user .data=${{ name: "Jane Doe", age: 42 }}></x-user>
+    </section>
+    <section>
+      <x-list @change=${e => setSelected(e.detail)}>
+        ${repeat(
+          numbers,
+          ({ value }) => value,
+          ({ value, label }, i) => html`
+            <x-option tabIndex="0" value=${value}>${label}</x-option>
+          `
+        )}
+      </x-list>
+      Chosen: ${numbers.find(({ value }) => value === selected).label}
     </section>
     <section>
       <x-select @change=${e => setSelected(e.detail)}>
@@ -68,17 +86,19 @@ const App = () => {
         )}
       </x-select>
     </section>
-    <section>
-      <x-list @change=${e => setSelected(e.detail)}>
+    <section class="blue">
+      <x-select @change=${e => setSelected(e.detail)}>
+        <x-selected>
+          ${numbers.find(({ value }) => value === selected).label}
+        </x-selected>
         ${repeat(
           numbers,
           ({ value }) => value,
-          ({ value, label }, i) => html`
+          ({ value, label }) => html`
             <x-option tabIndex="0" value=${value}>${label}</x-option>
           `
         )}
-      </x-list>
-      Chosen: ${numbers.find(({ value }) => value === selected).label}
+      </x-select>
     </section>
   `;
 };

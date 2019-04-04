@@ -65,5 +65,5 @@ export const useNavigatableOptions = element => {
           return nextItem(e);
       }
     });
-  });
+  }, [element]);
 };
