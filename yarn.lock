@@ -513,10 +513,10 @@ rollup-plugin-terser@4.0.4:
     serialize-javascript "^1.6.1"
     terser "^3.14.1"
 
-rollup-plugin-url-import@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-url-import/-/rollup-plugin-url-import-0.3.0.tgz#641c86c00e8dc6f695fc85657b27a61b8271184e"
-  integrity sha512-ZzUaYYguDIGiQQMQS69uccSr+wKhl/WSt7tk6Fee1utalrc56jU1ELZ/LKlk0INZR9QKk22oQI+2VzthImQk1A==
+rollup-plugin-url-import@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-url-import/-/rollup-plugin-url-import-0.4.0.tgz#e6b40bb8d32640e00a6b9445caf0e35f40a18580"
+  integrity sha512-4S49sC78B6HvFv0Bd/rLG+i/7Od4gjtaGrQq/lJ1KXNceHUl7SBsvyf8Ll13rH68wJ7hAX8bqdkuvloxTGEfzg==
 
 rollup@1.6.0:
   version "1.6.0"
