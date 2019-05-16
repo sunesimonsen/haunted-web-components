@@ -34,9 +34,21 @@ const numbers = [
   }
 ];
 
+const colors = [
+  { label: "Support Green", value: "#78A300" },
+  { label: "Message Green", value: "#37B8AF" },
+  { label: "Explore Blue", value: "#30AABC" },
+  { label: "Guide Pink", value: "#EB4962" },
+  { label: "Connect Red", value: "#EB6651" },
+  { label: "Chat Orange", value: "#F79A3E" },
+  { label: "Talk Yellow", value: "#EFC93D" },
+  { label: "Sell Gold", value: "#D4AE5E" }
+];
+
 const App = () => {
   const [name, setName] = useState("");
-  const [selected, setSelected] = useState("one");
+  const [selectedNumber, setSelectedNumber] = useState(numbers[0].value);
+  const [selectedColor, setSelectedColor] = useState(colors[0].value);
 
   return html`
     <style>
@@ -61,7 +73,7 @@ const App = () => {
       <x-user .data=${{ name: "Jane Doe", age: 42 }}></x-user>
     </section>
     <section>
-      <x-list @change=${e => setSelected(e.detail)}>
+      <x-list @change=${e => setSelectedNumber(e.detail)}>
         ${repeat(
           numbers,
           ({ value }) => value,
@@ -70,12 +82,12 @@ const App = () => {
           `
         )}
       </x-list>
-      Chosen: ${numbers.find(({ value }) => value === selected).label}
+      Chosen: ${numbers.find(({ value }) => value === selectedNumber).label}
     </section>
     <section>
-      <x-select @change=${e => setSelected(e.detail)}>
+      <x-select @change=${e => setSelectedNumber(e.detail)}>
         <x-selected>
-          ${numbers.find(({ value }) => value === selected).label}
+          ${numbers.find(({ value }) => value === selectedNumber).label}
         </x-selected>
         ${repeat(
           numbers,
@@ -87,15 +99,33 @@ const App = () => {
       </x-select>
     </section>
     <section class="blue">
-      <x-select @change=${e => setSelected(e.detail)}>
+      <x-select @change=${e => setSelectedNumber(e.detail)}>
         <x-selected>
-          ${numbers.find(({ value }) => value === selected).label}
+          ${numbers.find(({ value }) => value === selectedNumber).label}
         </x-selected>
         ${repeat(
           numbers,
           ({ value }) => value,
           ({ value, label }) => html`
             <x-option tabIndex="0" value=${value}>${label}</x-option>
+          `
+        )}
+      </x-select>
+    </section>
+    <section>
+      <x-select @change=${e => setSelectedColor(e.detail)}>
+        <x-selected>
+          <span style="color: ${selectedColor}">
+            ${colors.find(({ value }) => value === selectedColor).label}
+          </span>
+        </x-selected>
+        ${repeat(
+          colors,
+          ({ value }) => value,
+          ({ value, label }) => html`
+            <x-option tabIndex="0" value=${value}>
+              <span style="color: ${value}">${label}</span>
+            </x-option>
           `
         )}
       </x-select>
