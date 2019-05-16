@@ -10,7 +10,8 @@ export const useNavigatableOptions = element => {
 
       if (option) {
         const detail = option.getAttribute("value");
-        element.dispatchEvent(new CustomEvent("change", { detail }));
+        element.value = detail;
+        element.dispatchEvent(new CustomEvent("change", { detail }), element);
         e.preventDefault();
       }
     };

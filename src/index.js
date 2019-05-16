@@ -73,7 +73,7 @@ const App = () => {
       <x-user .data=${{ name: "Jane Doe", age: 42 }}></x-user>
     </section>
     <section>
-      <x-list @change=${e => setSelectedNumber(e.detail)}>
+      <x-list @change=${e => setSelectedNumber(e.target.value)}>
         ${repeat(
           numbers,
           ({ value }) => value,
@@ -85,7 +85,7 @@ const App = () => {
       Chosen: ${numbers.find(({ value }) => value === selectedNumber).label}
     </section>
     <section>
-      <x-select @change=${e => setSelectedNumber(e.detail)}>
+      <x-select @change=${e => setSelectedNumber(e.target.value)}>
         <x-selected>
           ${numbers.find(({ value }) => value === selectedNumber).label}
         </x-selected>
@@ -99,7 +99,7 @@ const App = () => {
       </x-select>
     </section>
     <section class="blue">
-      <x-select @change=${e => setSelectedNumber(e.detail)}>
+      <x-select @change=${e => setSelectedNumber(e.target.value)}>
         <x-selected>
           ${numbers.find(({ value }) => value === selectedNumber).label}
         </x-selected>
@@ -113,7 +113,7 @@ const App = () => {
       </x-select>
     </section>
     <section>
-      <x-select @change=${e => setSelectedColor(e.detail)}>
+      <x-select @change=${e => setSelectedColor(e.target.value)}>
         <x-selected>
           <span style="color: ${selectedColor}">
             ${colors.find(({ value }) => value === selectedColor).label}
