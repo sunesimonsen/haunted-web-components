@@ -7,4 +7,4 @@ const Greeting = ({ name }) => html`
 
 Greeting.observedAttributes = ["name"];
 
-customElements.define("x-greeting", component(Greeting));
+customElements.define("exo-greeting", component(Greeting));

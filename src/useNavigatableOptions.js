@@ -6,7 +6,7 @@ import {
 export const useNavigatableOptions = element => {
   useEffect(() => {
     const select = e => {
-      const option = e.target.closest("x-option");
+      const option = e.target.closest("exo-option");
 
       if (option) {
         const detail = option.getAttribute("value");
@@ -18,9 +18,9 @@ export const useNavigatableOptions = element => {
 
     const nextItem = e => {
       e.preventDefault();
-      const options = Array.from(element.querySelectorAll("x-option"));
+      const options = Array.from(element.querySelectorAll("exo-option"));
 
-      if (e.target.nodeName.toLowerCase() === "x-option") {
+      if (e.target.nodeName.toLowerCase() === "exo-option") {
         const index = options.indexOf(e.target);
         const newIndex = (index + 1) % options.length;
 
@@ -33,9 +33,9 @@ export const useNavigatableOptions = element => {
 
     const previousItem = e => {
       e.preventDefault();
-      const options = Array.from(element.querySelectorAll("x-option"));
+      const options = Array.from(element.querySelectorAll("exo-option"));
 
-      if (e.target.nodeName.toLowerCase() === "x-option") {
+      if (e.target.nodeName.toLowerCase() === "exo-option") {
         const index = options.indexOf(e.target);
         const newIndex = index - 1;
 

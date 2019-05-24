@@ -5,4 +5,4 @@ const User = ({ data: { name, age } }) => html`
   <div class="user">${name} ${age}</div>
 `;
 
-customElements.define("x-user", component(User));
+customElements.define("exo-user", component(User));

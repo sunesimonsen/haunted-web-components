@@ -40,7 +40,7 @@ const Button = element => {
 };
 
 customElements.define(
-  "x-button",
+  "exo-button",
   component(Button, HTMLElement, {
     shadowRootInit: { delegatesFocus: true }
   })

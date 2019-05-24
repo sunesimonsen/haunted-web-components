@@ -17,4 +17,4 @@ const List = element => {
   `;
 };
 
-customElements.define("x-list", component(List));
+customElements.define("exo-list", component(List));

@@ -10,4 +10,4 @@ const Option = () => html`
   <li class="option" role="option"><slot></slot></li>
 `;
 
-customElements.define("x-option", component(Option));
+customElements.define("exo-option", component(Option));

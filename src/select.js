@@ -35,7 +35,7 @@ const Select = element => {
 
   const closeOnBlur = e => {
     setTimeout(() => {
-      if (isOpen && !element.querySelector("x-option:focus")) {
+      if (isOpen && !element.querySelector("exo-option:focus")) {
         closeMenu();
       }
     }, 1);
@@ -102,24 +102,24 @@ const Select = element => {
         background: transparent;
       }
 
-      ::slotted(x-option) {
+      ::slotted(exo-option) {
         display: block;
         padding: 10px 32px;
       }
 
-      ::slotted(x-option:focus) {
+      ::slotted(exo-option:focus) {
         background: var(--focus-color, ${focusColor});
         outline: none;
       }
 
-      ::slotted(x-option:hover) {
+      ::slotted(exo-option:hover) {
         background: var(--accent-color-hover, ${hoverColor});
       }
     </style>
     <div id="container" @keydown=${onKeyDown}>
-      <x-button id="trigger" @click=${toggleOpenState}>
+      <exo-button id="trigger" @click=${toggleOpenState}>
         <slot name="value"></slot>
-      </x-button>
+      </exo-button>
       ${isOpen
         ? html`
             <ul id="menu">
@@ -142,5 +142,5 @@ const Selected = element => {
   `;
 };
 
-customElements.define("x-selected", component(Selected));
-customElements.define("x-select", component(Select));
+customElements.define("exo-selected", component(Selected));
+customElements.define("exo-select", component(Select));

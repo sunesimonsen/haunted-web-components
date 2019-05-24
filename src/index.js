@@ -63,84 +63,84 @@ const App = () => {
       }
     </style>
     <section>
-      <x-greeting name=${name || "Enter a name"}></x-greeting>
+      <exo-greeting name=${name || "Enter a name"}></exo-greeting>
       <fieldset>
         <label>Update name:</label>
         <input @keyup=${e => setName(e.target.value)} value=${name} />
       </fieldset>
     </section>
     <section>
-      <x-user .data=${{ name: "Jane Doe", age: 42 }}></x-user>
+      <exo-user .data=${{ name: "Jane Doe", age: 42 }}></exo-user>
     </section>
     <section>
-      <x-button @click=${() => alert("Hello")}>Click me!</x-button>
+      <exo-button @click=${() => alert("Hello")}>Click me!</exo-button>
     </section>
     <section>
-      <x-list @change=${e => setSelectedNumber(e.target.value)}>
+      <exo-list @change=${e => setSelectedNumber(e.target.value)}>
         ${repeat(
           numbers,
           ({ value }) => value,
           ({ value, label }, i) => html`
-            <x-option tabIndex="0" value=${value}>${label}</x-option>
+            <exo-option tabIndex="0" value=${value}>${label}</exo-option>
           `
         )}
-      </x-list>
+      </exo-list>
       Chosen: ${numbers.find(({ value }) => value === selectedNumber).label}
     </section>
     <section>
-      <x-select @change=${e => setSelectedNumber(e.target.value)}>
-        <x-selected>
+      <exo-select @change=${e => setSelectedNumber(e.target.value)}>
+        <exo-selected>
           ${numbers.find(({ value }) => value === selectedNumber).label}
-        </x-selected>
+        </exo-selected>
         ${repeat(
           numbers,
           ({ value }) => value,
           ({ value, label }) => html`
-            <x-option tabIndex="0" value=${value}>${label}</x-option>
+            <exo-option tabIndex="0" value=${value}>${label}</exo-option>
           `
         )}
-      </x-select>
+      </exo-select>
     </section>
     <section class="blue">
-      <x-select @change=${e => setSelectedNumber(e.target.value)}>
-        <x-selected>
+      <exo-select @change=${e => setSelectedNumber(e.target.value)}>
+        <exo-selected>
           ${numbers.find(({ value }) => value === selectedNumber).label}
-        </x-selected>
+        </exo-selected>
         ${repeat(
           numbers,
           ({ value }) => value,
           ({ value, label }) => html`
-            <x-option tabIndex="0" value=${value}>${label}</x-option>
+            <exo-option tabIndex="0" value=${value}>${label}</exo-option>
           `
         )}
-      </x-select>
+      </exo-select>
     </section>
     <section>
-      <x-select @change=${e => setSelectedColor(e.target.value)}>
-        <x-selected>
+      <exo-select @change=${e => setSelectedColor(e.target.value)}>
+        <exo-selected>
           <span style="color: ${selectedColor}">
             ${colors.find(({ value }) => value === selectedColor).label}
           </span>
-        </x-selected>
+        </exo-selected>
         ${repeat(
           colors,
           ({ value }) => value,
           ({ value, label }) => html`
-            <x-option tabIndex="0" value=${value}>
+            <exo-option tabIndex="0" value=${value}>
               <span style="color: ${value}">${label}</span>
-            </x-option>
+            </exo-option>
           `
         )}
-      </x-select>
+      </exo-select>
     </section>
   `;
 };
 
-customElements.define("x-app", component(App));
+customElements.define("exo-app", component(App));
 
 render(
   html`
-    <x-app></x-app>
+    <exo-app></exo-app>
   `,
   document.body
 );
