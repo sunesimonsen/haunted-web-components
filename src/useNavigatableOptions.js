@@ -1,7 +1,7 @@
 import {
   useEffect,
   useState
-} from "https://unpkg.com/haunted@4.2.0/haunted.js";
+} from "https://unpkg.com/haunted@4.4.0/haunted.js";
 
 export const useNavigatableOptions = element => {
   useEffect(() => {

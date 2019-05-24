@@ -5,7 +5,7 @@ import { repeat } from "https://unpkg.com/lit-html@^1.0.0/directives/repeat.js";
 import {
   component,
   useState
-} from "https://unpkg.com/haunted@4.2.0/haunted.js";
+} from "https://unpkg.com/haunted@4.4.0/haunted.js";
 
 import "./greeting.js";
 import "./user.js";
@@ -71,6 +71,9 @@ const App = () => {
     </section>
     <section>
       <x-user .data=${{ name: "Jane Doe", age: 42 }}></x-user>
+    </section>
+    <section>
+      <x-button @click=${() => alert("Hello")}>Click me!</x-button>
     </section>
     <section>
       <x-list @change=${e => setSelectedNumber(e.target.value)}>

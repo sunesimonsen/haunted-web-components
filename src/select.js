@@ -4,7 +4,7 @@ import {
   component,
   useEffect,
   useState
-} from "https://unpkg.com/haunted@4.2.0/haunted.js";
+} from "https://unpkg.com/haunted@4.4.0/haunted.js";
 
 import { useNavigatableOptions } from "./useNavigatableOptions.js";
 import "./button.js";
@@ -83,13 +83,23 @@ const Select = element => {
         position: absolute;
         border: 1px solid #d8dcde;
         border-radius: 3px;
-        z-index: 100;
+        z-index: 101;
         background: white;
         box-shadow: 0 20px 30px 0 rgba(4, 68, 77, 0.15);
         padding: 8px 0;
         margin: 0;
         margin-top: 2px;
         min-width: 180px;
+      }
+
+      #backdrop {
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent;
       }
 
       ::slotted(x-option) {
@@ -115,6 +125,7 @@ const Select = element => {
             <ul id="menu">
               <slot>No items!</slot>
             </ul>
+            <div id="backdrop" @click="${closeMenu}" />
           `
         : null}
     </div>
