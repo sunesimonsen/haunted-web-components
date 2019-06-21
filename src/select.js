@@ -19,10 +19,12 @@ const Select = element => {
     setIsOpen(true);
   };
 
-  const closeMenu = () => {
+  const closeMenu = ({ focusTrigger = false } = {}) => {
     setIsOpen(false);
-    const trigger = element.shadowRoot.getElementById("trigger");
-    trigger.focus();
+    if (focusTrigger) {
+      const trigger = element.shadowRoot.getElementById("trigger");
+      trigger.focus();
+    }
   };
 
   const toggleOpenState = () => {
@@ -50,13 +52,13 @@ const Select = element => {
       case 27:
         // Esc
         e.preventDefault();
-        return closeMenu();
+        return closeMenu({ focusTrigger: true });
     }
   };
 
   useEffect(() => {
     element.addEventListener("change", () => {
-      closeMenu();
+      closeMenu({ focusTrigger: true });
     });
   }, [element]);
 
