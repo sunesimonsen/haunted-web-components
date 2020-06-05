@@ -8,10 +8,12 @@
   "private": true,
   "scripts": {
     "start": "serve -p 3000",
-    "build": "rollup --config rollup.config.js src/index.js"
+    "build": "rollup --config rollup.config.js src/index.js",
+    "gh-pages": "npm run build && gh-pages -d public"
   },
   "devDependencies": {
     "prettier": "1.16.4",
+    "gh-pages": "^1.0.0",
     "rollup": "1.6.0",
     "rollup-plugin-terser": "4.0.4",
     "rollup-plugin-url-import": "0.4.0",
