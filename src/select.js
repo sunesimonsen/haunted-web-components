@@ -7,6 +7,7 @@ import {
 } from "https://unpkg.com/haunted@4.4.0/haunted.js";
 
 import { useNavigatableOptions } from "./useNavigatableOptions.js";
+import { useClickOutside } from "./useClickOutside.js";
 import "./button.js";
 import { hoverColor, focusColor } from "./defaultTheme.js";
 
@@ -14,6 +15,7 @@ const Select = element => {
   const [isOpen, setIsOpen] = useState(false);
 
   useNavigatableOptions(element);
+  useClickOutside(element);
 
   const openMenu = () => {
     setIsOpen(true);
@@ -57,27 +59,18 @@ const Select = element => {
   };
 
   useEffect(() => {
-    element.addEventListener("change", () => {
-      closeMenu();
-    });
-  }, [element]);
-
-  useEffect(() => {
-    const clickOutsideHandler = e => {
+    element.addEventListener("clickOutside", () => {
       if (isOpen) {
-        const composedPath = e.composedPath();
-
-        if (!composedPath.includes(element)) {
-          closeMenu({ focusTrigger: false });
-        }
+        closeMenu();
       }
-    };
+    });
 
-    document.addEventListener("mousedown", clickOutsideHandler, true);
-    return () => {
-      document.removeEventListener("mousedown", clickOutsideHandler, true);
-    };
-  }, [isOpen]);
+    element.addEventListener("change", () => {
+      if (isOpen) {
+        closeMenu();
+      }
+    });
+  }, [element, isOpen]);
 
   return html`
     <style>
