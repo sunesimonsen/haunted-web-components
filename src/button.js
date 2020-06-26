@@ -34,6 +34,16 @@ const Button = element => {
         outline: none;
         box-shadow: 0 0 0 3px var(--focus-color-outline, ${focusColorOutline});
       }
+
+      button:focus:not(:focus-visible) {
+        outline: none;
+        box-shadow: none;
+      }
+
+      button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--focus-color-outline, ${focusColorOutline});
+      }
     </style>
     <button><slot></slot></button>
   `;
