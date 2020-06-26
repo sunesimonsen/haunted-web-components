@@ -58,9 +58,26 @@ const Select = element => {
 
   useEffect(() => {
     element.addEventListener("change", () => {
-      closeMenu({ focusTrigger: true });
+      closeMenu();
     });
   }, [element]);
+
+  useEffect(() => {
+    const clickOutsideHandler = e => {
+      if (isOpen) {
+        const composedPath = e.composedPath();
+
+        if (!composedPath.includes(element)) {
+          closeMenu({ focusTrigger: false });
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", clickOutsideHandler, true);
+    return () => {
+      document.removeEventListener("mousedown", clickOutsideHandler, true);
+    };
+  }, [isOpen]);
 
   return html`
     <style>
@@ -94,16 +111,6 @@ const Select = element => {
         min-width: 180px;
       }
 
-      #backdrop {
-        position: fixed;
-        z-index: 100;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: transparent;
-      }
-
       ::slotted(exo-option) {
         display: block;
         padding: 10px 32px;
@@ -127,7 +134,6 @@ const Select = element => {
             <ul id="menu">
               <slot>No items!</slot>
             </ul>
-            <div id="backdrop" @click="${closeMenu}" />
           `
         : null}
     </div>
