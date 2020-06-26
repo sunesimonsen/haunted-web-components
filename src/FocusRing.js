@@ -7,6 +7,12 @@ export const FocusRing = selector => html`
       outline: none;
     }
 
+    ${selector} {
+      transition: border-color 0.25s ease-in-out 0s,
+        box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
+        color 0.25s ease-in-out 0s;
+    }
+
     ${selector + ":focus"} {
       outline: none;
       box-shadow: 0 0 0 3px var(--focus-color-outline, ${focusColorOutline});
