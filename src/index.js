@@ -5,7 +5,7 @@ import { repeat } from "https://unpkg.com/lit-html@^1.0.0/directives/repeat.js";
 import {
   component,
   useState
-} from "https://unpkg.com/haunted@4.4.0/haunted.js";
+} from "https://unpkg.com/haunted@^4.4.0/haunted.js";
 
 import "./greeting.js";
 import "./user.js";

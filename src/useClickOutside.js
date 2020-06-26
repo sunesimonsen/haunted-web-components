@@ -1,4 +1,4 @@
-import { useEffect } from "https://unpkg.com/haunted@4.4.0/haunted.js";
+import { useEffect } from "https://unpkg.com/haunted@^4.4.0/haunted.js";
 
 export const useClickOutside = element => {
   useEffect(() => {

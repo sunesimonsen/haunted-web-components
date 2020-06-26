@@ -4,7 +4,7 @@ import {
   component,
   useEffect,
   useState
-} from "https://unpkg.com/haunted@4.4.0/haunted.js";
+} from "https://unpkg.com/haunted@^4.4.0/haunted.js";
 
 import { useNavigatableOptions } from "./useNavigatableOptions.js";
 import { useClickOutside } from "./useClickOutside.js";
