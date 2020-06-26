@@ -3,14 +3,13 @@ import {
   component,
   useEffect
 } from "https://unpkg.com/haunted@^4.4.0/haunted.js";
-import { accentColor, hoverColor, focusColorOutline } from "./defaultTheme.js";
+import { accentColor, hoverColor } from "./defaultTheme.js";
+import { FocusRing } from "./FocusRing.js";
 
 const Button = element => {
   return html`
+    ${FocusRing("button")}
     <style>
-      :host {
-        outline: none;
-      }
       button {
         border: 1px solid var(--accent-color, ${accentColor});
         border-radius: 4px;
@@ -28,21 +27,6 @@ const Button = element => {
       button:active,
       button:hover {
         background: var(--accent-color-hover, ${hoverColor});
-      }
-
-      button:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px var(--focus-color-outline, ${focusColorOutline});
-      }
-
-      button:focus:not(:focus-visible) {
-        outline: none;
-        box-shadow: none;
-      }
-
-      button:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 3px var(--focus-color-outline, ${focusColorOutline});
       }
     </style>
     <button><slot></slot></button>
