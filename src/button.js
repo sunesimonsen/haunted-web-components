@@ -3,7 +3,13 @@ import {
   component,
   useEffect
 } from "https://unpkg.com/haunted@^4.4.0/haunted.js";
-import { accentColor, hoverColor } from "./defaultTheme.js";
+import {
+  accentColor,
+  hoverColor,
+  buttonPaddingX,
+  buttonLineHeight,
+  spacingFactor
+} from "./defaultTheme.js";
 import { FocusRing } from "./FocusRing.js";
 
 const Button = element => {
@@ -13,12 +19,19 @@ const Button = element => {
       button {
         border: 1px solid var(--accent-color, ${accentColor});
         border-radius: 4px;
-        min-width: 8.57143em;
         background-color: transparent;
-        padding: 0.6em 2.25em;
+        padding: 0
+          calc(
+            var(--button-padding-x, ${buttonPaddingX}) *
+              var(--spacing-factor, ${spacingFactor})
+          );
+        line-height: calc(
+          var(--button-line-height, ${buttonLineHeight}) *
+            var(--spacing-factor, ${spacingFactor})
+        );
         text-align: center;
         color: var(--accent-color, ${accentColor});
-        font-size: 14px;
+        font-size: var(--button-font-size, 1rem);
         font-weight: 400;
         box-sizing: border-box;
         user-select: none;

@@ -61,6 +61,14 @@ const App = () => {
         --focus-color: #5293c725;
         --focus-color-outline: #5293c760;
       }
+      exo-button.small {
+        --button-font-size: 0.9rem;
+        --spacing-factor: 0.9;
+        --button-padding-x: 0.6em;
+      }
+      exo-button.large {
+        --button-font-size: 1.2rem;
+      }
     </style>
     <section>
       <exo-greeting name=${name || "Enter a name"}></exo-greeting>
@@ -73,7 +81,13 @@ const App = () => {
       <exo-user .data=${{ name: "Jane Doe", age: 42 }}></exo-user>
     </section>
     <section>
+      <exo-button class="small" @click=${() => alert("Hello")}
+        >Click me!</exo-button
+      >
       <exo-button @click=${() => alert("Hello")}>Click me!</exo-button>
+      <exo-button class="large" @click=${() => alert("Hello")}
+        >Click me!</exo-button
+      >
     </section>
     <section>
       <exo-list @change=${e => setSelectedNumber(e.target.value)}>
