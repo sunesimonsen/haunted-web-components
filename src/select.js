@@ -9,7 +9,13 @@ import {
 import { useNavigatableOptions } from "./useNavigatableOptions.js";
 import { useClickOutside } from "./useClickOutside.js";
 import "./button.js";
-import { hoverColor, focusColor } from "./defaultTheme.js";
+import {
+  hoverColor,
+  focusColor,
+  spacingFactor,
+  selectOptionLineHeight,
+  selectOptionPaddingX
+} from "./defaultTheme.js";
 
 const Select = element => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,11 +108,20 @@ const Select = element => {
         margin: 0;
         margin-top: 2px;
         min-width: 180px;
+        font-size: var(--button-font-size, 1rem);
       }
 
       ::slotted(exo-option) {
         display: block;
-        padding: 10px 32px;
+        padding: 0
+          calc(
+            var(--select-option-padding-x, ${selectOptionPaddingX}) *
+              var(--spacing-factor, ${spacingFactor})
+          );
+        line-height: calc(
+          var(--select-option-line-height, ${selectOptionLineHeight}) *
+            var(--spacing-factor, ${spacingFactor})
+        );
       }
 
       ::slotted(exo-option:focus) {

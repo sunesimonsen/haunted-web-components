@@ -5,3 +5,5 @@ export const focusColorOutline = "#012b3040";
 export const spacingFactor = 1;
 export const buttonLineHeight = "2em";
 export const buttonPaddingX = "1.07em";
+export const selectOptionLineHeight = "2.2em";
+export const selectOptionPaddingX = "1.3em";

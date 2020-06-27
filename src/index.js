@@ -61,13 +61,15 @@ const App = () => {
         --focus-color: #5293c725;
         --focus-color-outline: #5293c760;
       }
-      exo-button.small {
+      .small {
         --button-font-size: 0.9rem;
         --spacing-factor: 0.9;
-        --button-padding-x: 0.6em;
       }
-      exo-button.large {
+      .large {
         --button-font-size: 1.2rem;
+      }
+      exo-button.small {
+        --button-padding-x: 0.6em;
       }
     </style>
     <section>
@@ -101,7 +103,7 @@ const App = () => {
       </exo-list>
       Chosen: ${numbers.find(({ value }) => value === selectedNumber).label}
     </section>
-    <section>
+    <section class="small">
       <exo-select @change=${e => setSelectedNumber(e.target.value)}>
         <exo-selected>
           ${numbers.find(({ value }) => value === selectedNumber).label}
@@ -129,7 +131,7 @@ const App = () => {
         )}
       </exo-select>
     </section>
-    <section>
+    <section class="large">
       <exo-select @change=${e => setSelectedColor(e.target.value)}>
         <exo-selected>
           <span style="color: ${selectedColor}">
